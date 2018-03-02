@@ -1,13 +1,14 @@
-export default function playState() {
+export default function playState(game) {
     var snakeHead; //head of snake sprite
     var snakeSection = new Array(); //array of sprites that make the snake body sections
-    var snakePath = new Array(); //arrary of positions(points) that have to be stored for the path the sections follow
+    var snakePath = new Array(); //array of positions(points) that have to be stored for the path the sections follow
     var numSnakeSections = 30; //number of snake body sections
     var snakeSpacer = 6; //parameter that sets the spacing between sections
+
+    var cursors;
+
     return {
         create: function () {
-
-            game.physics.startSystem(Phaser.Physics.ARCADE);
 
             game.world.setBounds(0, 0, 800, 600);
 
@@ -16,7 +17,7 @@ export default function playState() {
             snakeHead = game.add.sprite(400, 300, 'ball');
             snakeHead.anchor.setTo(0.5, 0.5);
 
-            game.physics.enable(snakeHead, Phaser.Physics.ARCADE);
+            game.physics.enable(snakeHead, window.Phaser.Physics.ARCADE);
 
             //  Init snakeSection array
             for (var i = 1; i <= numSnakeSections - 1; i++) {
@@ -26,7 +27,7 @@ export default function playState() {
 
             //  Init snakePath array
             for (var i = 0; i <= numSnakeSections * snakeSpacer; i++) {
-                snakePath[i] = new Phaser.Point(400, 300);
+                snakePath[i] = new window.Phaser.Point(400, 300);
             }
 
         },
